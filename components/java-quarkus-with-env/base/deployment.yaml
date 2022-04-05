@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: java-quarkus-with-env
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: java-quarkus-with-env
+    app.kubernetes.io/part-of: purple-mermaid-app
+  name: java-quarkus-with-env
+  namespace: karthik-jk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: java-quarkus-with-env
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: java-quarkus-with-env
+    spec:
+      containers:
+      - env:
+        - name: DEBUG_PORT
+          value: "5858"
+        - name: test
+          value: test
+        image: quay.io/redhat-appstudio/user-workload:karthik-jk-java-quarkus-with-env
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        name: container-image
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          tcpSocket:
+            port: 8080
+        resources:
+          requests:
+            cpu: "0"
+            memory: 512Mi
+status: {}
