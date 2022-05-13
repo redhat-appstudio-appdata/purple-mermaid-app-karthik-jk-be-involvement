@@ -1,0 +1,9 @@
+bases:
+- components/1-nodejs/base
+- components/java-quarkus-with-env/base
+- components/java-quarkus/base
+- components/new-quarkus/base
+- components/nodejs/base
+- components/test-quarkus/base
+resources:
+- common-storage-pvc.yaml
