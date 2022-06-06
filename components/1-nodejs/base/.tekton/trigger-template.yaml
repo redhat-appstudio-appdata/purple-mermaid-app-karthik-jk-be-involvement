@@ -20,6 +20,13 @@ spec:
         pipelines.appstudio.openshift.io/type: build
       creationTimestamp: null
       generateName: 1-nodejs-
+      labels:
+        build.appstudio.openshift.io/application: purple-mermaid-app
+        build.appstudio.openshift.io/build: "true"
+        build.appstudio.openshift.io/component: 1-nodejs
+        build.appstudio.openshift.io/type: build
+        build.appstudio.openshift.io/version: "0.1"
+        pipelines.appstudio.openshift.io/type: build
       namespace: karthik-jk
     spec:
       params:
@@ -32,15 +39,12 @@ spec:
       - name: path-context
         value: .
       pipelineRef:
-        bundle: quay.io/redhat-appstudio/build-templates-bundle:19cf17aa63a1c65eee897af8430dbb9c1682d77a
+        bundle: quay.io/redhat-appstudio/build-templates-bundle:7170560e64e33af5fc37ba01531cbefdd2dc4fce
         name: docker-build
       workspaces:
       - name: workspace
         persistentVolumeClaim:
           claimName: appstudio
         subPath: 1-nodejs/$(tt.params.git-revision)
-      - name: registry-auth
-        secret:
-          secretName: redhat-appstudio-registry-pull-secret
     status: {}
 status: {}
