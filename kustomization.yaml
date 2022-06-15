@@ -4,6 +4,7 @@ bases:
 - components/java-quarkus-with-env/base
 - components/java-quarkus/base
 - components/new-quarkus/base
+- components/nodejs-sample/base
 - components/nodejs/base
 - components/test-quarkus/base
 kind: Kustomization
